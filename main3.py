@@ -1,4 +1,4 @@
-import sys, logging, random, open_color, arcade
+import sys, logging, random, math, open_color, arcade
 
 #check to make sure we are running the right version of Python
 version = (3,7)
@@ -39,6 +39,7 @@ class Window(arcade.Window):
             self.animal_sprite.center_y = y
             self.animal_sprite.dx = dx
             self.animal_sprite.dy = dy
+            self.animal_sprite.mass = 1
             self.animal_list.append(self.animal_sprite)            
 
     def update(self, delta_time):
@@ -50,15 +51,9 @@ class Window(arcade.Window):
 
             collisions = a.collides_with_list(self.animal_list)
             for c in collisions:
-                if a.center_x > c.center_x:
-                    a.dx = abs(a.dx) * -1
-                if a.center_x < c.center_x:
-                    a.dx = abs(a.dx)
-                if a.center_y > c.center_y:
-                    a.dy = abs(a.dy)
-                if a.center_y < c.center_y:
-                    a.dy = abs(a.dy) * -1
-
+                # implement conservation of momentum here
+                # pass just does nothing. After you add your code, ou can delete what is now on line 56
+                pass
 
 
             if a.center_x <= MARGIN:
